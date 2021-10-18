@@ -1,9 +1,15 @@
+/**
+ * Challenge 02 - Working with Middlewares
+ * 
+ * author : anonyblast [Gustavo Iafelix]
+ */
+
 const express = require('express');
 const cors = require('cors');
-
+const app = express();
 const { v4: uuidv4, validate } = require('uuid');
 
-const app = express();
+
 app.use(express.json());
 app.use(cors());
 
@@ -11,7 +17,7 @@ const users = [];
 
 function checksExistsUserAccount(request, response, next) {
     const { username } = request.headers;
-    const user = users.find((user) => user.username == username);
+    const user = users.find((user) => user.username === username);
 
     if (!user)
         return response.status(404).json({ error: "Not found" });
